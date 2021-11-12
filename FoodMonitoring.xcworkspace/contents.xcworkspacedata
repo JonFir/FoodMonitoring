@@ -4,4 +4,7 @@
    <FileRef
       location = "group:FoodMonitoring/FoodMonitoring.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:FoodMonitoring/../Root">
+   </FileRef>
 </Workspace>

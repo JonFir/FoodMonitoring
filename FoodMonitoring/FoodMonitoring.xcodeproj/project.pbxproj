@@ -7,16 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DC8C5E29273E80100030044C /* FoodMonitoringApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8C5E28273E80100030044C /* FoodMonitoringApp.swift */; };
-		DC8C5E2B273E80100030044C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8C5E2A273E80100030044C /* ContentView.swift */; };
+		DC8C5E29273E80100030044C /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8C5E28273E80100030044C /* Main.swift */; };
 		DC8C5E2D273E80120030044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2C273E80120030044C /* Assets.xcassets */; };
 		DC8C5E30273E80120030044C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2F273E80120030044C /* Preview Assets.xcassets */; };
+		DC8C5E3F273E84D50030044C /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = DC8C5E3E273E84D50030044C /* Root */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DC8C5E25273E80100030044C /* FoodMonitoring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodMonitoring.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC8C5E28273E80100030044C /* FoodMonitoringApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodMonitoringApp.swift; sourceTree = "<group>"; };
-		DC8C5E2A273E80100030044C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DC8C5E28273E80100030044C /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		DC8C5E2C273E80120030044C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC8C5E2F273E80120030044C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -26,6 +25,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC8C5E3F273E84D50030044C /* Root in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,6 +37,7 @@
 			children = (
 				DC8C5E27273E80100030044C /* FoodMonitoring */,
 				DC8C5E26273E80100030044C /* Products */,
+				DC8C5E3D273E84D50030044C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,8 +52,7 @@
 		DC8C5E27273E80100030044C /* FoodMonitoring */ = {
 			isa = PBXGroup;
 			children = (
-				DC8C5E28273E80100030044C /* FoodMonitoringApp.swift */,
-				DC8C5E2A273E80100030044C /* ContentView.swift */,
+				DC8C5E28273E80100030044C /* Main.swift */,
 				DC8C5E2C273E80120030044C /* Assets.xcassets */,
 				DC8C5E2E273E80120030044C /* Preview Content */,
 			);
@@ -65,6 +65,13 @@
 				DC8C5E2F273E80120030044C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DC8C5E3D273E84D50030044C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +90,9 @@
 			dependencies = (
 			);
 			name = FoodMonitoring;
+			packageProductDependencies = (
+				DC8C5E3E273E84D50030044C /* Root */,
+			);
 			productName = FoodMonitoring;
 			productReference = DC8C5E25273E80100030044C /* FoodMonitoring.app */;
 			productType = "com.apple.product-type.application";
@@ -137,8 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC8C5E2B273E80100030044C /* ContentView.swift in Sources */,
-				DC8C5E29273E80100030044C /* FoodMonitoringApp.swift in Sources */,
+				DC8C5E29273E80100030044C /* Main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +350,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DC8C5E3E273E84D50030044C /* Root */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Root;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DC8C5E1D273E80100030044C /* Project object */;
 }

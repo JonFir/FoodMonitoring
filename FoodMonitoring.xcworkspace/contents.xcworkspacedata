@@ -7,4 +7,10 @@
    <FileRef
       location = "group:FoodMonitoring/../Root">
    </FileRef>
+   <FileRef
+      location = "group:SwiftUILib">
+   </FileRef>
+   <FileRef
+      location = "group:SwiftUIPreviewLib">
+   </FileRef>
 </Workspace>

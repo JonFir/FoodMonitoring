@@ -11,13 +11,24 @@
 		DC8C5E2D273E80120030044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2C273E80120030044C /* Assets.xcassets */; };
 		DC8C5E30273E80120030044C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2F273E80120030044C /* Preview Assets.xcassets */; };
 		DC8C5E3F273E84D50030044C /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = DC8C5E3E273E84D50030044C /* Root */; };
+		DCB9E27E2741608B00B3F321 /* FoodMonitoringDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E2792741608B00B3F321 /* FoodMonitoringDebug.xcconfig */; };
+		DCB9E27F2741608B00B3F321 /* ReleaseProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27A2741608B00B3F321 /* ReleaseProject.xcconfig */; };
+		DCB9E2802741608B00B3F321 /* FoodMonitoringRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */; };
+		DCB9E2812741608B00B3F321 /* CommonProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27C2741608B00B3F321 /* CommonProject.xcconfig */; };
+		DCB9E2822741608B00B3F321 /* DebugProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DC4EA5E727416DDD00A30337 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC8C5E25273E80100030044C /* FoodMonitoring.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodMonitoring.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC8C5E28273E80100030044C /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		DC8C5E2C273E80120030044C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC8C5E2F273E80120030044C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DCB9E2792741608B00B3F321 /* FoodMonitoringDebug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = FoodMonitoringDebug.xcconfig; sourceTree = "<group>"; };
+		DCB9E27A2741608B00B3F321 /* ReleaseProject.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ReleaseProject.xcconfig; sourceTree = "<group>"; };
+		DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = FoodMonitoringRelease.xcconfig; sourceTree = "<group>"; };
+		DCB9E27C2741608B00B3F321 /* CommonProject.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonProject.xcconfig; sourceTree = "<group>"; };
+		DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugProject.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +63,8 @@
 		DC8C5E27273E80100030044C /* FoodMonitoring */ = {
 			isa = PBXGroup;
 			children = (
+				DC4EA5E727416DDD00A30337 /* Info.plist */,
+				DCB9E2782741608B00B3F321 /* Configs */,
 				DC8C5E28273E80100030044C /* Main.swift */,
 				DC8C5E2C273E80120030044C /* Assets.xcassets */,
 				DC8C5E2E273E80120030044C /* Preview Content */,
@@ -72,6 +85,18 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DCB9E2782741608B00B3F321 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				DCB9E27C2741608B00B3F321 /* CommonProject.xcconfig */,
+				DCB9E2792741608B00B3F321 /* FoodMonitoringDebug.xcconfig */,
+				DCB9E27A2741608B00B3F321 /* ReleaseProject.xcconfig */,
+				DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */,
+				DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +163,11 @@
 			files = (
 				DC8C5E30273E80120030044C /* Preview Assets.xcassets in Resources */,
 				DC8C5E2D273E80120030044C /* Assets.xcassets in Resources */,
+				DCB9E27F2741608B00B3F321 /* ReleaseProject.xcconfig in Resources */,
+				DCB9E2802741608B00B3F321 /* FoodMonitoringRelease.xcconfig in Resources */,
+				DCB9E27E2741608B00B3F321 /* FoodMonitoringDebug.xcconfig in Resources */,
+				DCB9E2822741608B00B3F321 /* DebugProject.xcconfig in Resources */,
+				DCB9E2812741608B00B3F321 /* CommonProject.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +187,7 @@
 /* Begin XCBuildConfiguration section */
 		DC8C5E31273E80120030044C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -218,6 +249,7 @@
 		};
 		DC8C5E32273E80120030044C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB9E27A2741608B00B3F321 /* ReleaseProject.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -273,6 +305,7 @@
 		};
 		DC8C5E34273E80120030044C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB9E2792741608B00B3F321 /* FoodMonitoringDebug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -287,6 +320,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,6 +336,7 @@
 		};
 		DC8C5E35273E80120030044C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -316,6 +351,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

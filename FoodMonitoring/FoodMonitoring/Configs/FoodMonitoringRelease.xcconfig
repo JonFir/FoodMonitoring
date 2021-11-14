@@ -1,0 +1,7 @@
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "CommonProject.xcconfig"
+
+INFOPLIST_EXPAND_BUILD_SETTINGS = YES
+INFOPLIST_FILE = FoodMonitoring/Info.plist

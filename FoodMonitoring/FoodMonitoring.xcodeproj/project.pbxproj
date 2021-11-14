@@ -114,7 +114,7 @@
 			};
 			buildConfigurationList = DC8C5E20273E80100030044C /* Build configuration list for PBXProject "FoodMonitoring" */;
 			compatibilityVersion = "Xcode 13.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,

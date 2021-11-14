@@ -6,7 +6,7 @@ public struct MyApp: App {
     
     public var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainScreen()
         }
     }
 }

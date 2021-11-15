@@ -1,5 +1,6 @@
 import SwiftUI
 import Modifiers
+import SwiftUIPreviewLib
 
 struct MainScreen: View {
     @State
@@ -7,7 +8,10 @@ struct MainScreen: View {
     
     var body: some View {
         ZStack {
-            Text(L10n.hello)
+            VStack {
+                Text(L10n.hello)
+            }
+            
             AddButtonView(toggleValue: $isShowNewFood)
                 .modifier(Modifiers.Alignment(.bottomTrailing))
                 .padding([.bottom, .trailing], 16)
@@ -20,6 +24,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainScreen()
             .preferredColorScheme(.light)
-            .environment(\.locale, .init(identifier: "ru"))
+            .modifier(PreviewLocaleModifier("ru"))
     }
 }

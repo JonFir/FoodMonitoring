@@ -16,6 +16,10 @@ internal enum L10n {
   internal static var createFoodChoiceSheetSimpleDish: String { return L10n.tr("Localizable", "create_food_choice_sheet_simple_dish") }
   /// Привет мир
   internal static var hello: String { return L10n.tr("Localizable", "hello") }
+  /// тест %@
+  internal static func test(_ p1: Any) -> String {
+    return L10n.tr("Localizable", "test", String(describing: p1))
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

@@ -1,5 +1,6 @@
 import SwiftUI
 
+/// An ViewModifier that feel all available space and align view in to self
 public struct Alignment: ViewModifier {
     
     let alignment: SwiftUI.Alignment

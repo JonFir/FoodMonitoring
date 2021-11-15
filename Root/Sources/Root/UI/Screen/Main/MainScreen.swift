@@ -24,6 +24,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainScreen()
             .preferredColorScheme(.light)
-            .modifier(PreviewLocaleModifier("ru"))
+            .environment(\.locale, .init(identifier: "ru"))
     }
 }

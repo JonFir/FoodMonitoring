@@ -4,6 +4,11 @@ private class CurrentBundleFinder {}
 
 public extension Bundle {
     
+    /// will find bundle in swiftUI preview model
+    /// in over modes return defaultBundle
+    /// - Parameters:
+    ///   - name: name of bundle
+    ///   - defaultBundle: Bundle for normal mode
     static func safeModuleForPreview(
         name: String,
         or defaultBundle: () -> Bundle

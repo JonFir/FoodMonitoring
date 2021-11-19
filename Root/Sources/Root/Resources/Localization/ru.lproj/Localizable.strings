@@ -1,4 +1,3 @@
 "hello" = "Привет мир";
 "create_food_choice_sheet_simple_dish" = "Простое блюдо";
 "create_food_choice_sheet_complex_dish" = "Составное блюдо";
-"test" = "тест %@";

@@ -5,6 +5,9 @@ struct SearchFoodScreen: View {
     @State
     private var isShowCreateFoodChoiceSheet = false
     
+    @State
+    private var ssss = false
+    
     var body: some View {
         ZStack {
             Text("hello", bundle: .safeModule)
@@ -18,16 +21,21 @@ struct SearchFoodScreen: View {
             titleVisibility: .hidden
         ) {
             Button {
+                ssss.toggle()
             } label: {
                 Text(L10n.createFoodChoiceSheetSimpleDish)
             }
 
             Button {
-                
+                ssss.toggle()
             } label: {
                 Text(L10n.createFoodChoiceSheetComplexDish)
             }
         }
+        .sheet(isPresented: $ssss) {
+            FoodDataSearchScreenView<FoodDataSearchViewModelDefault>(viewModel: FoodDataSearchViewModelDefault())
+        }
+        
     }
 }
 

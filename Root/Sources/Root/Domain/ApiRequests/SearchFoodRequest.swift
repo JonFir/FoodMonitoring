@@ -1,20 +1,20 @@
 import Foundation
 import NetworkLib
 import StandartLib
+import Settings
 
 func searchFoodRequest(
     query: String,
     pageNumber: Int
 ) async throws -> SearchFoodResponse {
-    var components = URL(string: "https://api.nal.usda.gov/fdc/v1")
-        .flatMap { $0.appendingPathComponent("/foods/search") }
-        .flatMap(URLComponents.init)
+    let path = URL(string: try Settings.setting(forKey: .rootUrl))!.appendingPathComponent("/foods/search")
+    var components = URLComponents(url: path)
     
     components?.queryItems = [
         "query": query,
         "pageSize": 50,
         "pageNumber": pageNumber,
-        "api_key": ProcessInfo.processInfo.environment["api_key"],
+        "api_key": try Settings.setting(forKey: .apiKey),
     ].compactMap(URLQueryItem.init(key:value:))
     
     let request = try components

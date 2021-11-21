@@ -44,6 +44,7 @@
 		DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = FoodMonitoringRelease.xcconfig; sourceTree = "<group>"; };
 		DCB9E27C2741608B00B3F321 /* CommonProject.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonProject.xcconfig; sourceTree = "<group>"; };
 		DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugProject.xcconfig; sourceTree = "<group>"; };
+		DCDB1821274A5862004AF2B0 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +83,7 @@
 				DCB9E2782741608B00B3F321 /* Configs */,
 				DC8C5E28273E80100030044C /* Main.swift */,
 				DC8C5E2C273E80120030044C /* Assets.xcassets */,
+				DCDB1821274A5862004AF2B0 /* Settings.bundle */,
 				DC8C5E2E273E80120030044C /* Preview Content */,
 			);
 			path = FoodMonitoring;
@@ -125,6 +127,7 @@
 				DC8C5E22273E80100030044C /* Frameworks */,
 				DC8C5E23273E80100030044C /* Resources */,
 				DCDB181B274A1B6B004AF2B0 /* Embed Frameworks */,
+				DCDB1823274A5AF7004AF2B0 /* Settings */,
 			);
 			buildRules = (
 			);
@@ -188,6 +191,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DCDB1823274A5AF7004AF2B0 /* Settings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Settings;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n    cp -r \"${PROJECT_DIR}/FoodMonitoring/Settings.bundle\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC8C5E21273E80100030044C /* Sources */ = {

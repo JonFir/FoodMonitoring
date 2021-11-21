@@ -37,7 +37,8 @@ let package = Package(
                 "SwiftUIPreviewLib",
                 "SwiftUILib",
                 "NetworkLib",
-                "StandartLib"
+                "StandartLib",
+                "Settings",
             ],
             resources: [
                 .process("Resources")
@@ -45,7 +46,9 @@ let package = Package(
         ),
         .target(
             name: "Settings",
-            dependencies: [],
+            dependencies: [
+                "StandartLib"
+            ],
             resources: []
         ),
         .testTarget(

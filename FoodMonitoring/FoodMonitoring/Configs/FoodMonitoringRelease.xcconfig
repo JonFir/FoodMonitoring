@@ -5,3 +5,5 @@
 
 INFOPLIST_EXPAND_BUILD_SETTINGS = YES
 INFOPLIST_FILE = FoodMonitoring/Info.plist
+API_KEY = "" // set you api key
+ROOT_URL = "https://api.nal.usda.gov/fdc/v1"

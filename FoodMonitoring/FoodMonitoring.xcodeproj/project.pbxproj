@@ -16,7 +16,22 @@
 		DCB9E2802741608B00B3F321 /* FoodMonitoringRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */; };
 		DCB9E2812741608B00B3F321 /* CommonProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27C2741608B00B3F321 /* CommonProject.xcconfig */; };
 		DCB9E2822741608B00B3F321 /* DebugProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */; };
+		DCDB181A274A1B6B004AF2B0 /* Root in Embed Frameworks */ = {isa = PBXBuildFile; productRef = DC8C5E3E273E84D50030044C /* Root */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DCDB181B274A1B6B004AF2B0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DCDB181A274A1B6B004AF2B0 /* Root in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DC4EA5E727416DDD00A30337 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +124,7 @@
 				DC8C5E21273E80100030044C /* Sources */,
 				DC8C5E22273E80100030044C /* Frameworks */,
 				DC8C5E23273E80100030044C /* Resources */,
+				DCDB181B274A1B6B004AF2B0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

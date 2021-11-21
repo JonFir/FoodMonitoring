@@ -14,7 +14,11 @@ let package = Package(
         .library(
             name: "Root",
             type: .dynamic,
-            targets: ["Root"]),
+            targets: [
+                "Root",
+                "Settings",
+            ]
+        ),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -38,6 +42,11 @@ let package = Package(
             resources: [
                 .process("Resources")
             ]
+        ),
+        .target(
+            name: "Settings",
+            dependencies: [],
+            resources: []
         ),
         .testTarget(
             name: "RootTests",

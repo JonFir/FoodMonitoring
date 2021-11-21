@@ -14,7 +14,7 @@ func searchFoodRequest(
         "query": query,
         "pageSize": 50,
         "pageNumber": pageNumber,
-        "api_key": ProcessInfo.processInfo.environment["api_key"]!,
+        "api_key": ProcessInfo.processInfo.environment["api_key"],
     ].compactMap(URLQueryItem.init(key:value:))
     
     let request = try components

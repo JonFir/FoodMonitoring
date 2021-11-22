@@ -4,24 +4,23 @@ import StandartLib
 import Settings
 
 func searchFoodRequest(
+    session: URLSession,
+    settings: SettingsForKey,
     query: String,
     pageNumber: Int
 ) async throws -> SearchFoodResponse {
-    let path = URL(string: try Settings.setting(forKey: .rootUrl))!.appendingPathComponent("/foods/search")
-    var components = URLComponents(url: path)
+    let path = try URL(string: settings(.rootUrl))
+        .value(or: NetworkError.invalidUrl)
+        .appendingPathComponent("/foods/search")
     
-    components?.queryItems = [
+    var components = try URLComponents(url: path).value(or: NetworkError.invalidUrl)
+    components.queryItems = [
         "query": query,
         "pageSize": 50,
         "pageNumber": pageNumber,
-        "api_key": try Settings.setting(forKey: .apiKey),
+        "api_key": try settings(.apiKey),
     ].compactMap(URLQueryItem.init(key:value:))
     
-    let request = try components
-        .map(URLRequest.init)
-        .value(or: NetworkError.invalidUrl)
-    
-
-    let (data, _) = try await URLSession.shared.data(for: request)
+    let (data, _) = try await session.data(from: components.url.value(or: NetworkError.invalidUrl))
     return try JSONDecoder().decode(SearchFoodResponse.self, from: data)
 }

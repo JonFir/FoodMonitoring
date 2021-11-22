@@ -1,7 +1,9 @@
 import Foundation
 import StandartLib
 
-public func setting(forKey key: SettingsKey) throws -> String {
+public typealias SettingsForKey = (_ key: SettingsKey) throws -> String
+
+public let settingsForKey: SettingsForKey = { key in
     if let value = userDefaultSetting(forKey: key) {
         return value
     } else if let value = environmentSetting(forKey: key) {

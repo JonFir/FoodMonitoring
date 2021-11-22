@@ -10,7 +10,7 @@ public struct Alignment: ViewModifier {
     }
     
     public func body(content: Content) -> some View {
-        HStack() { content }
+        HStack { content }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
     }
 }

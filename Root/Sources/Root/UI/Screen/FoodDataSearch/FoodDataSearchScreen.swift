@@ -1,6 +1,6 @@
 import SwiftUI
 import Combine
-
+import Settings
 struct RowData: Identifiable {
     let id: Int
     let name: String
@@ -34,7 +34,6 @@ protocol FoodDataSearchViewModel: ObservableObject {
     func search(query: String)
 }
 
-
 final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     @Published var rows = [RowData]()
     @Published var query = ""
@@ -48,7 +47,11 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     func search(query: String) {
         Task {
             do {
-                let result = try await searchFoodRequest(query: query, pageNumber: 0)
+                let result = try await searchFoodRequest(
+                    session: .shared,
+                    settings: settingsForKey,
+                    query: query, pageNumber: 0
+                )
                 await set(food: result.foods.map { $0.asRowData() })
             } catch {
                 print(error)

@@ -128,6 +128,7 @@
 				DC8C5E23273E80100030044C /* Resources */,
 				DCDB181B274A1B6B004AF2B0 /* Embed Frameworks */,
 				DCDB1823274A5AF7004AF2B0 /* Settings */,
+				DCDB1824274B4FA3004AF2B0 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -210,6 +211,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n    cp -r \"${PROJECT_DIR}/FoodMonitoring/Settings.bundle\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\nfi\n";
+		};
+		DCDB1824274B4FA3004AF2B0 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  cd ..; swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

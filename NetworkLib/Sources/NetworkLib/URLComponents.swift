@@ -7,3 +7,8 @@ public extension URLComponents {
     }
     
 }
+
+func componentsFactory(rootUrl: String, path: String) throws -> URLComponents {
+    let url = try urlFactory(rootUrl: rootUrl, path: path)
+    return try URLComponents(url: url).value(or: NetworkError.invalidUrl)
+}

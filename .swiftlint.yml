@@ -1,0 +1,7 @@
+disabled_rules:
+  - trailing_comma
+  - trailing_whitespace
+
+line_length: 120
+vertical_whitespace:
+  max_empty_lines: 2

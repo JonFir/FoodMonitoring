@@ -1,6 +1,7 @@
 import SwiftUI
 import Combine
-import Settings
+import FoodAPI
+
 struct RowData: Identifiable {
     let id: Int
     let name: String
@@ -35,22 +36,25 @@ protocol FoodDataSearchViewModel: ObservableObject {
 }
 
 final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
+    private let searchFoodRequest: SearchFoodRequest
+    private var cancellable = Set<AnyCancellable>()
     @Published var rows = [RowData]()
     @Published var query = ""
     
-    private var cancellable = Set<AnyCancellable>()
     
-    init() {
+    init(
+        searchFoodRequest: SearchFoodRequest
+    ) {
+        self.searchFoodRequest = searchFoodRequest
         $query.sink(receiveValue: search).store(in: &cancellable)
     }
 
     func search(query: String) {
         Task {
             do {
-                let result = try await searchFoodRequest(
-                    session: .shared,
-                    settings: settingsForKey,
-                    query: query, pageNumber: 0
+                let result = try await searchFoodRequest.run(
+                    query: query,
+                    pageNumber: 0
                 )
                 await set(food: result.foods.map { $0.asRowData() })
             } catch {
@@ -85,7 +89,7 @@ final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
 
 }
 
-struct FoodDataSearchScreenView<ViewModel: FoodDataSearchViewModel>: View {
+struct FoodDataSearchScreen<ViewModel: FoodDataSearchViewModel>: View {
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
@@ -103,6 +107,6 @@ struct FoodDataSearchScreenView<ViewModel: FoodDataSearchViewModel>: View {
 
 struct FoodDataSearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDataSearchScreenView<FoodDataSearchViewModelPreview>(viewModel: FoodDataSearchViewModelPreview())
+        FoodDataSearchScreen<FoodDataSearchViewModelPreview>(viewModel: FoodDataSearchViewModelPreview())
     }
 }

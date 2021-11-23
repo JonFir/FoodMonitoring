@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC5DE1F3274BD102001C7944 /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = DC5DE1F2274BD102001C7944 /* Root */; };
+		DC5DE1F4274BD102001C7944 /* Root in Embed Frameworks */ = {isa = PBXBuildFile; productRef = DC5DE1F2274BD102001C7944 /* Root */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC8C5E29273E80100030044C /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8C5E28273E80100030044C /* Main.swift */; };
 		DC8C5E2D273E80120030044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2C273E80120030044C /* Assets.xcassets */; };
 		DC8C5E30273E80120030044C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2F273E80120030044C /* Preview Assets.xcassets */; };
-		DC8C5E3F273E84D50030044C /* Root in Frameworks */ = {isa = PBXBuildFile; productRef = DC8C5E3E273E84D50030044C /* Root */; };
 		DCB9E27E2741608B00B3F321 /* FoodMonitoringDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E2792741608B00B3F321 /* FoodMonitoringDebug.xcconfig */; };
 		DCB9E27F2741608B00B3F321 /* ReleaseProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27A2741608B00B3F321 /* ReleaseProject.xcconfig */; };
 		DCB9E2802741608B00B3F321 /* FoodMonitoringRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */; };
 		DCB9E2812741608B00B3F321 /* CommonProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27C2741608B00B3F321 /* CommonProject.xcconfig */; };
 		DCB9E2822741608B00B3F321 /* DebugProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */; };
-		DCDB181A274A1B6B004AF2B0 /* Root in Embed Frameworks */ = {isa = PBXBuildFile; productRef = DC8C5E3E273E84D50030044C /* Root */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,7 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DCDB181A274A1B6B004AF2B0 /* Root in Embed Frameworks */,
+				DC5DE1F4274BD102001C7944 /* Root in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC8C5E3F273E84D50030044C /* Root in Frameworks */,
+				DC5DE1F3274BD102001C7944 /* Root in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +136,7 @@
 			);
 			name = FoodMonitoring;
 			packageProductDependencies = (
-				DC8C5E3E273E84D50030044C /* Root */,
+				DC5DE1F2274BD102001C7944 /* Root */,
 			);
 			productName = FoodMonitoring;
 			productReference = DC8C5E25273E80100030044C /* FoodMonitoring.app */;
@@ -448,7 +448,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DC8C5E3E273E84D50030044C /* Root */ = {
+		DC5DE1F2274BD102001C7944 /* Root */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Root;
 		};

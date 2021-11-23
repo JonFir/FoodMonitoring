@@ -1,16 +1,26 @@
 import SwiftUI
 import Modifiers
+import Localization
 
 struct SearchFoodScreen: View {
+    typealias MakeFoodDataSearchScreen = () -> AnyView
+    private let makeFoodDataSearchScreen: MakeFoodDataSearchScreen
+    
     @State
     private var isShowCreateFoodChoiceSheet = false
     
     @State
     private var ssss = false
     
+    init(
+        makeFoodDataSearchScreen: @escaping MakeFoodDataSearchScreen
+    ) {
+        self.makeFoodDataSearchScreen = makeFoodDataSearchScreen
+    }
+    
     var body: some View {
         ZStack {
-            Text("hello", bundle: .safeModule)
+            Text("hello")
             AddButtonView(toggleValue: $isShowCreateFoodChoiceSheet)
                 .modifier(Modifiers.Alignment(.bottomTrailing))
                 .padding([.bottom, .trailing], 16)
@@ -33,7 +43,7 @@ struct SearchFoodScreen: View {
             }
         }
         .sheet(isPresented: $ssss) {
-            FoodDataSearchScreenView<FoodDataSearchViewModelDefault>(viewModel: FoodDataSearchViewModelDefault())
+            makeFoodDataSearchScreen()
         }
         
     }
@@ -41,6 +51,6 @@ struct SearchFoodScreen: View {
 
 struct SearchFoodScreen_Previews: PreviewProvider {
     static var previews: some View {
-        SearchFoodScreen()
+        SearchFoodScreen { AnyView(Text("")) }
     }
 }

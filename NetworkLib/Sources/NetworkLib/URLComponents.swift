@@ -6,9 +6,9 @@ public extension URLComponents {
         self.init(url: url, resolvingAgainstBaseURL: true)
     }
     
-}
-
-func componentsFactory(rootUrl: String, path: String) throws -> URLComponents {
-    let url = try urlFactory(rootUrl: rootUrl, path: path)
-    return try URLComponents(url: url).value(or: NetworkError.invalidUrl)
+    static func make(rootUrl: String, path: String) throws -> URLComponents {
+        let url = try URL.make(rootUrl: rootUrl, path: path)
+        return try URLComponents(url: url).value(or: NetworkError.invalidUrl)
+    }
+    
 }

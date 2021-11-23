@@ -16,9 +16,9 @@ let package = Package(
             type: .dynamic,
             targets: [
                 "Root",
-                "Settings",
+                "FoodUI",
             ]
-        ),
+        )
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -27,6 +27,7 @@ let package = Package(
         .package(name: "SwiftUILib", path: "../SwiftUILib"),
         .package(name: "NetworkLib", path: "../NetworkLib"),
         .package(name: "StandartLib", path: "../StandartLib"),
+        .package(url: "https://github.com/Swinject/Swinject.git", from: "2.8.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -34,25 +35,53 @@ let package = Package(
         .target(
             name: "Root",
             dependencies: [
+                "Settings",
+                "FoodUI",
+                "FoodAPI",
+                "Swinject",
+            ],
+            resources: []
+        ),
+        .target(
+            name: "FoodUI",
+            dependencies: [
+                "StandartLib",
                 "SwiftUIPreviewLib",
                 "SwiftUILib",
-                "NetworkLib",
-                "StandartLib",
-                "Settings",
-            ],
-            resources: [
-                .process("Resources")
+                "Localization",
+                "FoodAPI",
+                "Swinject",
             ]
+        ),
+        .target(
+            name: "FoodAPI",
+            dependencies: [
+                "NetworkLib",
+                "Swinject",
+            ],
+            resources: []
         ),
         .target(
             name: "Settings",
             dependencies: [
-                "StandartLib"
+                "StandartLib",
+                "Swinject",
             ],
             resources: []
         ),
-        .testTarget(
-            name: "RootTests",
-            dependencies: ["Root"]),
+        .target(
+            name: "Localization",
+            dependencies: [
+                "SwiftUIPreviewLib",
+            ],
+            resources: [
+                .process("Strings")
+            ]
+        ),
+//        .testTarget(
+//            name: "RootTests",
+//            dependencies: [
+//                "Root"
+//            ]),
     ]
 )

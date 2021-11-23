@@ -3,8 +3,8 @@
 ## In case your config entries all use a common input/output parent directory, you can specify those here.
 ##   Every input/output paths in the rest of the config will then be expressed relative to these.
 ##   Those two top-level keys are optional and default to "." (the directory of the config file).
- input_dir: Sources/Root/Resources
- output_dir: Sources/Root/Generated
+ input_dir: Sources/Localization/Strings
+ output_dir: Sources/Localization/Generated
 
 
 ## Generate constants for your localized strings.
@@ -12,13 +12,15 @@
 ##   SwiftGen will parse all `.strings` files found in that folder.
  strings:
    inputs:
-     - Localization/ru.lproj
+     - ./ru.lproj
    outputs:
 #     - templatePath: Swiftgen/Templates/strings.stencil
        templateName: structured-swift5
        output: Strings+Generated.swift
        params:
            lookupFunction: Bundle.safeModule.localized
+           publicAccess: true
+       
 
 
 ## Generate constants for your Assets Catalogs, including constants for images, colors, ARKit resources, etc.

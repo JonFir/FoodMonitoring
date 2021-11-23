@@ -1,15 +1,16 @@
 import SwiftUI
+import StandartLib
 
 struct FoodDataSearchScreen<ViewModel: FoodDataSearchViewModel>: View {
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.rows) { row in
-                    RowView(data: row)
+            List(viewModel.rows.indexed(), id: \.index.self) { index, row in
+                RowView(data: row).onAppear {
+                    print(index)
                 }
-            }
+            }.listStyle(.insetGrouped)
             .searchable(text: $viewModel.query)
             .navigationTitle("Searchable Example")
         }
@@ -20,10 +21,22 @@ private struct RowView: View {
     let data: RowConfiguration
     
     var body: some View {
-        VStack {
-            Text(data.name)
-            Text(data.brand)
-            Text(data.calories)
+        Section(header: Text(data.name)) {
+            HStack {
+                Text("Бренд:").font(.caption)
+                Spacer()
+                Text(data.brand)
+            }
+            HStack {
+                Text("Категория:").font(.caption)
+                Spacer()
+                Text(data.category)
+            }
+            HStack {
+                Text("Калл:").font(.caption)
+                Spacer()
+                Text(data.calories)
+            }
         }
     }
 }

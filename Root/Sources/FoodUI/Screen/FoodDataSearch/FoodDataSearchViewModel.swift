@@ -13,6 +13,8 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     
     @Published var rows = [RowConfiguration]()
     @Published var query = ""
+    private var currentPage = 0
+    private var maxPage = Int.max
     
     
     init(
@@ -43,7 +45,7 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
 
 }
 
-struct RowConfiguration: Identifiable {
+struct RowConfiguration: Identifiable, Hashable {
     let id: Int
     let name: String
     let brand: String

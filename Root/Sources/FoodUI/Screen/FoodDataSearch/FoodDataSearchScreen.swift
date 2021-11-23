@@ -1,106 +1,29 @@
 import SwiftUI
-import Combine
-import FoodAPI
-
-struct RowData: Identifiable {
-    let id: Int
-    let name: String
-    let brand: String
-    let ingredients: String
-    let category: String
-    let calories: String
-}
-
-private extension Food {
-    func asRowData() -> RowData {
-        let calories = foodNutrients?
-            .filter { $0.nutrientId == 1008 }
-            .first?.value.map { "\($0)" }
-        ?? ""
-        return RowData(
-            id: fdcId,
-            name: lowercaseDescription ?? "",
-            brand: brandOwner ?? "",
-            ingredients: ingredients ?? "",
-            category: foodCategory ?? "",
-            calories: calories
-        )
-    }
-}
-
-protocol FoodDataSearchViewModel: ObservableObject {
-    var rows: [RowData] { get }
-    var query: String { get set }
-    
-    func search(query: String)
-}
-
-final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
-    private let searchFoodRequest: SearchFoodRequest
-    private var cancellable = Set<AnyCancellable>()
-    @Published var rows = [RowData]()
-    @Published var query = ""
-    
-    
-    init(
-        searchFoodRequest: SearchFoodRequest
-    ) {
-        self.searchFoodRequest = searchFoodRequest
-        $query.sink(receiveValue: search).store(in: &cancellable)
-    }
-
-    func search(query: String) {
-        Task {
-            do {
-                let result = try await searchFoodRequest.run(
-                    query: query,
-                    pageNumber: 0
-                )
-                await set(food: result.foods.map { $0.asRowData() })
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    @MainActor
-    private func set(food: [RowData]) {
-        rows = food
-    }
-
-}
-
-final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
-    @Published var rows = [
-        RowData(
-            id: 0,
-            name: "apple",
-            brand: "Apple inc",
-            ingredients: "ingredients",
-            category: "category",
-            calories: "138"
-        )
-    ]
-    @Published var query = "apple"
-    
-    func search(query: String) {
-        
-    }
-
-}
 
 struct FoodDataSearchScreen<ViewModel: FoodDataSearchViewModel>: View {
     @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         NavigationView {
-            List(viewModel.rows) { row in
-                Text(row.name + "1")
-                Text(row.brand + "2")
-                Text(row.calories + "3")
+            List {
+                ForEach(viewModel.rows) { row in
+                    RowView(data: row)
+                }
             }
             .searchable(text: $viewModel.query)
             .navigationTitle("Searchable Example")
+        }
+    }
+}
+
+private struct RowView: View {
+    let data: RowConfiguration
+    
+    var body: some View {
+        VStack {
+            Text(data.name)
+            Text(data.brand)
+            Text(data.calories)
         }
     }
 }
@@ -109,4 +32,27 @@ struct FoodDataSearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
         FoodDataSearchScreen<FoodDataSearchViewModelPreview>(viewModel: FoodDataSearchViewModelPreview())
     }
+}
+
+private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
+    @Published var rows = [
+        RowConfiguration(
+            id: 0,
+            name: "apple",
+            brand: "Apple inc",
+            ingredients: "ingredients",
+            category: "category",
+            calories: "138"
+        ),
+        RowConfiguration(
+            id: 0,
+            name: "apple",
+            brand: "Apple inc",
+            ingredients: "ingredients",
+            category: "category",
+            calories: "138"
+        ),
+    ]
+    @Published var query = "apple"
+
 }

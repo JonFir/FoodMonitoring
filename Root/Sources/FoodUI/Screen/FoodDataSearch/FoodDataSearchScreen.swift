@@ -23,9 +23,9 @@ private struct RowView: View {
     var body: some View {
         Section(header: Text(data.name)) {
             HStack {
-                Text("Бренд:").font(.caption)
+                Text("Калл:").font(.caption)
                 Spacer()
-                Text(data.brand)
+                Text(data.calories)
             }
             HStack {
                 Text("Категория:").font(.caption)
@@ -33,9 +33,9 @@ private struct RowView: View {
                 Text(data.category)
             }
             HStack {
-                Text("Калл:").font(.caption)
+                Text("Бренд:").font(.caption)
                 Spacer()
-                Text(data.calories)
+                Text(data.brand)
             }
         }
     }

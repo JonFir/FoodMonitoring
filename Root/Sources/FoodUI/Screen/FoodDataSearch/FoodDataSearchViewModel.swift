@@ -18,7 +18,7 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     }
     
     override
-    func makeState(fromEvent event: FoodDataSearchViewModelEvent) -> FoodDataSearchViewModelState {
+    func makeState(fromEvent event: Event) -> State {
         switch event {
         case .search(let query):
             return onSearch(query: query)
@@ -31,7 +31,7 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
 
 private extension FoodDataSearchViewModelDefault {
     
-    private func onSearch(query: String) -> FoodDataSearchViewModelState {
+    private func onSearch(query: String) -> State {
         searchFoodRequest.run(query: query, pageNumber: 0)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
@@ -43,7 +43,7 @@ private extension FoodDataSearchViewModelDefault {
         return state.copy { $0.query = query }
     }
     
-    private func onNewResultReceived(food: [State.Row]) -> FoodDataSearchViewModelState {
+    private func onNewResultReceived(food: [State.Row]) -> State {
         state.copy { $0.rows = food }
     }
     

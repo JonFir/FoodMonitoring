@@ -20,7 +20,7 @@ struct FoodDataSearchScreen: View {
 }
 
 private struct RowView: View {
-    let data: RowConfiguration
+    let data: FoodDataSearchViewModelState.Row
     
     var body: some View {
         Section(header: Text(data.name)) {
@@ -52,9 +52,9 @@ struct FoodDataSearchScreenView_Previews: PreviewProvider {
 private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
     
     init() {
-        let state = FoodDataSearchViewModelDefault.State(
+        let state = FoodDataSearchViewModelState(
             rows: [
-                RowConfiguration(
+                FoodDataSearchViewModelState.Row(
                     id: 0,
                     name: "apple",
                     brand: "Apple inc",
@@ -62,7 +62,7 @@ private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
                     category: "category",
                     calories: "138"
                 ),
-                RowConfiguration(
+                FoodDataSearchViewModelState.Row(
                     id: 0,
                     name: "apple",
                     brand: "Apple inc",

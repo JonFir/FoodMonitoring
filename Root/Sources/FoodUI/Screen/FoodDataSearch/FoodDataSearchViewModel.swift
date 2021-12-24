@@ -3,43 +3,7 @@ import Combine
 import FoodAPI
 import MVVMLib
 
-class FoodDataSearchViewModel: ViewModel {
-    fileprivate(set) var state: State
-    let stateWillChange = PassthroughSubject<Void, Never>()
-    
-    init(initialState state: State) {
-        self.state = state
-    }
-    
-    func dispatch(_ event: Event) {
-        stateWillChange.send()
-    }
-    
-    struct State {
-        fileprivate(set) var rows: [RowConfiguration]
-        fileprivate(set) var query: String
-        fileprivate var currentPage: Int
-        fileprivate var maxPage: Int
-        
-        init(
-            rows: [RowConfiguration] = [RowConfiguration](),
-            query: String = "",
-            currentPage: Int = 0,
-            maxPage: Int = Int.max
-        ) {
-            self.rows = rows
-            self.query = query
-            self.currentPage = currentPage
-            self.maxPage = maxPage
-        }
-    }
-    
-    enum Event {
-        case search(_ query: String)
-        case newResultReceived(_ food: [RowConfiguration])
-    }
-
-}
+typealias FoodDataSearchViewModel = ViewModelAbstract<FoodDataSearchViewModelState, FoodDataSearchViewModelEvent>
 
 final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     private let searchFoodRequest: SearchFoodRequest
@@ -53,56 +17,38 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
         super.init(initialState: state)
     }
     
-    override func dispatch(_ event: Event) {
+    override
+    func makeState(fromEvent event: FoodDataSearchViewModelEvent) -> FoodDataSearchViewModelState {
         switch event {
         case .search(let query):
-            onSearch(query: query)
+            return onSearch(query: query)
         case .newResultReceived(let food):
-            onNewResultReceived(food: food)
+            return onNewResultReceived(food: food)
         }
-        super.dispatch(event)
     }
     
-    private func onSearch(query: String) {
-        state.query = query
+}
+
+private extension FoodDataSearchViewModelDefault {
+    
+    private func onSearch(query: String) -> FoodDataSearchViewModelState {
         searchFoodRequest.run(query: query, pageNumber: 0)
             .subscribe(on: DispatchQueue.global())
             .receive(on: DispatchQueue.main)
             .sink { completion in
                 print(completion)
             } receiveValue: { [weak self] result in
-                self?.dispatch(.newResultReceived(result.foods.map { $0.asRowData() }))
+                self?.dispatch(.newResultReceived(result.foods.map(FoodDataSearchViewModelState.Row.init(food:))))
             }.store(in: &cancellable)
+        var state = state
+        state.query = query
+        return state
     }
     
-    private func onNewResultReceived(food: [RowConfiguration]) {
+    private func onNewResultReceived(food: [State.Row]) -> FoodDataSearchViewModelState {
+        var state = state
         state.rows = food
+        return state
     }
     
-}
-
-struct RowConfiguration: Identifiable, Hashable {
-    let id: Int
-    let name: String
-    let brand: String
-    let ingredients: String
-    let category: String
-    let calories: String
-}
-
-private extension Food {
-    func asRowData() -> RowConfiguration {
-        let calories = foodNutrients?
-            .filter { $0.nutrientId == 1008 }
-            .first?.value.map { "\($0)" }
-        ?? ""
-        return RowConfiguration(
-            id: fdcId,
-            name: lowercaseDescription ?? "",
-            brand: brandOwner ?? "",
-            ingredients: ingredients ?? "",
-            category: foodCategory ?? "",
-            calories: calories
-        )
-    }
 }

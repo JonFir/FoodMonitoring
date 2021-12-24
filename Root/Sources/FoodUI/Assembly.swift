@@ -21,7 +21,7 @@ public class Assembly: Swinject.Assembly {
         container.register(FoodDataSearchViewModel.self) { resolver in
             FoodDataSearchViewModelDefault(
                 searchFoodRequest: resolver.resolve(SearchFoodRequest.self)!,
-                initialState: FoodDataSearchViewModel.State()
+                initialState: FoodDataSearchViewModelState()
             )
         }
         

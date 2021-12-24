@@ -1,6 +1,7 @@
 import SwiftUI
 import StandartLib
 import MVVMLib
+import Localization
 
 struct FoodDataSearchScreen: View {
     @ObservedObject var vmConnector: ViewModelConnector<FoodDataSearchViewModel>
@@ -14,7 +15,7 @@ struct FoodDataSearchScreen: View {
             }
             .listStyle(.insetGrouped)
             .searchable(text: vmConnector.bind(\.query, { .search($0) }))
-            .navigationTitle("Searchable Example")
+            .navigationTitle(L10n.foodDataSearchScreenTitle)
         }
     }
 }

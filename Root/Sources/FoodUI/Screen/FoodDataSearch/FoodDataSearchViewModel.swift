@@ -38,7 +38,8 @@ private extension FoodDataSearchViewModelDefault {
             .sink { completion in
                 print(completion)
             } receiveValue: { [weak self] result in
-                self?.dispatch(.newResultReceived(result.foods.map(FoodDataSearchViewModelState.Row.init(food:))))
+                let rows = result.foods.map(FoodDataSearchViewModelState.Row.init(food:))
+                self?.dispatch(.newResultReceived(rows))
             }.store(in: &cancellable)
         return state.copy { $0.query = query }
     }

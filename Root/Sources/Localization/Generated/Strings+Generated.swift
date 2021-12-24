@@ -14,6 +14,8 @@ public enum L10n {
   public static var createFoodChoiceSheetComplexDish: String { return L10n.tr("Localizable", "create_food_choice_sheet_complex_dish") }
   /// Простое блюдо
   public static var createFoodChoiceSheetSimpleDish: String { return L10n.tr("Localizable", "create_food_choice_sheet_simple_dish") }
+  /// Поиск продуктов
+  public static var foodDataSearchScreenTitle: String { return L10n.tr("Localizable", "food_data_search_screen_title") }
   /// Привет мир
   public static var hello: String { return L10n.tr("Localizable", "hello") }
 }

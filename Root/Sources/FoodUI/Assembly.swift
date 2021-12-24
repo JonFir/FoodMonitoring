@@ -13,17 +13,22 @@ public class Assembly: Swinject.Assembly {
         
         container.register(SearchFoodScreen.self) { resolver in
             SearchFoodScreen {
-                AnyView(resolver.resolve(FoodDataSearchScreen<FoodDataSearchViewModelDefault>.self)!)
+                AnyView(resolver.resolve(FoodDataSearchScreen.self)!)
             }
         }
         
-        container.register(FoodDataSearchViewModelDefault.self) { resolver in
-            FoodDataSearchViewModelDefault(searchFoodRequest: resolver.resolve(SearchFoodRequest.self)!)
+        container.register(FoodDataSearchViewModel.self) { resolver in
+            FoodDataSearchViewModelDefault(
+                searchFoodRequest: resolver.resolve(SearchFoodRequest.self)!,
+                initialState: FoodDataSearchViewModel.State()
+            )
         }
         
-        container.register(FoodDataSearchScreen<FoodDataSearchViewModelDefault>.self) { resolver in
-            FoodDataSearchScreen<FoodDataSearchViewModelDefault>(
-                viewModel: resolver.resolve(FoodDataSearchViewModelDefault.self)!
+        container.register(FoodDataSearchScreen.self) { resolver in
+            FoodDataSearchScreen(
+                vmConnector: FoodDataSearchViewModelConnector(
+                    viewModel: resolver.resolve(FoodDataSearchViewModel.self)!
+                )
             )
         }
         

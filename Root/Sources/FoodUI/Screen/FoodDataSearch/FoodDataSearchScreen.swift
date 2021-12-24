@@ -1,18 +1,18 @@
 import SwiftUI
 import StandartLib
 
-struct FoodDataSearchScreen<VM: FoodDataSearchViewModel>: View {
-    @ObservedObject var viewModel: VM
+struct FoodDataSearchScreen: View {
+    @ObservedObject var vmConnector: FoodDataSearchViewModelConnector
     
     var body: some View {
         NavigationView {
-            List(viewModel.state.rows.indexed(), id: \.index.self) { index, row in
+            List(vmConnector.viewModel.state.rows.indexed(), id: \.index.self) { index, row in
                 RowView(data: row).onAppear {
                     print(index)
                 }
             }
             .listStyle(.insetGrouped)
-            .searchable(text: viewModel.bind(\.query, { .search($0) }))
+            .searchable(text: vmConnector.bind(\.query, { .search($0) }))
             .navigationTitle("Searchable Example")
         }
     }
@@ -44,12 +44,13 @@ private struct RowView: View {
 
 struct FoodDataSearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDataSearchScreen<FoodDataSearchViewModelPreview>(viewModel: FoodDataSearchViewModelPreview())
+        FoodDataSearchScreen(vmConnector: FoodDataSearchViewModelConnector(viewModel: FoodDataSearchViewModelPreview()))
     }
 }
 
-private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel, ViewModelDispatchStubMixin {
-    let state: FoodDataSearchViewModelDefault.State = {
+private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
+    
+    init() {
         let state = FoodDataSearchViewModelDefault.State(
             rows: [
                 RowConfiguration(
@@ -71,6 +72,6 @@ private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel, Vie
             ],
             query: "apple"
         )
-        return state
-    }()
+        super.init(initialState: state)
+    }
 }

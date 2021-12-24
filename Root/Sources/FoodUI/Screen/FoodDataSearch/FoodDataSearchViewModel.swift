@@ -40,15 +40,11 @@ private extension FoodDataSearchViewModelDefault {
             } receiveValue: { [weak self] result in
                 self?.dispatch(.newResultReceived(result.foods.map(FoodDataSearchViewModelState.Row.init(food:))))
             }.store(in: &cancellable)
-        var state = state
-        state.query = query
-        return state
+        return state.copy { $0.query = query }
     }
     
     private func onNewResultReceived(food: [State.Row]) -> FoodDataSearchViewModelState {
-        var state = state
-        state.rows = food
-        return state
+        state.copy { $0.rows = food }
     }
     
 }

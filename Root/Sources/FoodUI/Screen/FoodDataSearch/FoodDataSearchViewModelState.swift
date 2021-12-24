@@ -1,7 +1,8 @@
 import Foundation
 import FoodAPI
+import StandartLib
 
-struct FoodDataSearchViewModelState {
+struct FoodDataSearchViewModelState: CopyMixin {
     var rows: [Row]
     var query: String
     var currentPage: Int

@@ -1,12 +1,13 @@
 import SwiftUI
 import StandartLib
+import MVVMLib
 
 struct FoodDataSearchScreen: View {
-    @ObservedObject var vmConnector: FoodDataSearchViewModelConnector
+    @ObservedObject var vmConnector: ViewModelConnector<FoodDataSearchViewModel>
     
     var body: some View {
         NavigationView {
-            List(vmConnector.viewModel.state.rows.indexed(), id: \.index.self) { index, row in
+            List(vmConnector.state.rows.indexed(), id: \.index.self) { index, row in
                 RowView(data: row).onAppear {
                     print(index)
                 }
@@ -44,7 +45,7 @@ private struct RowView: View {
 
 struct FoodDataSearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDataSearchScreen(vmConnector: FoodDataSearchViewModelConnector(viewModel: FoodDataSearchViewModelPreview()))
+        FoodDataSearchScreen(vmConnector: ViewModelConnector(viewModel: FoodDataSearchViewModelPreview()))
     }
 }
 

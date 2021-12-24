@@ -41,17 +41,6 @@ class FoodDataSearchViewModel: ViewModel {
 
 }
 
-class FoodDataSearchViewModelConnector: ViewModelConnector {
-    let viewModel: FoodDataSearchViewModel
-    var stateObserving: AnyCancellable?
-    init(viewModel: FoodDataSearchViewModel) {
-        self.viewModel = viewModel
-        self.stateObserving = viewModel.stateWillChange.sink { [weak self] _ in
-            self?.objectWillChange.send()
-        }
-    }
-}
-
 final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     private let searchFoodRequest: SearchFoodRequest
     private var cancellable = Set<AnyCancellable>()

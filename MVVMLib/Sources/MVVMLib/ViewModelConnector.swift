@@ -1,23 +1,21 @@
 import SwiftUI
+import Combine
 
-public protocol ViewModelConnector: ObservableObject {
-    associatedtype VM: ViewModel
+public final class ViewModelConnector<VM: ViewModel>: ObservableObject {
+    private let viewModel: VM
+    private var stateObserving: AnyCancellable?
     
-    var viewModel: VM { get }
-    var state: VM.State { get }
+    public var state: VM.State { viewModel.state }
     
-    func bind<Value>(
-        _ get: KeyPath<VM.State, Value>,
-        _ eventBuilder: @escaping (Value) -> VM.Event
-    ) -> Binding<Value>
     
-    func dispatch(_ event: VM.Event)
-}
-
-public extension ViewModelConnector {
-    var state: VM.State { viewModel.state }
+    public init(viewModel: VM) {
+        self.viewModel = viewModel
+        self.stateObserving = viewModel.stateWillChange.sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+    }
     
-    func bind<Value>(
+    public func bind<Value>(
         _ get: KeyPath<VM.State, Value>,
         _ eventBuilder: @escaping (Value) -> VM.Event
     ) -> Binding<Value> {
@@ -29,7 +27,7 @@ public extension ViewModelConnector {
         }
     }
     
-    func dispatch(_ event: VM.Event) {
+    public func dispatch(_ event: VM.Event) {
         viewModel.dispatch(event)
     }
 }

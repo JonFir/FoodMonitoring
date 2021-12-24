@@ -1,6 +1,7 @@
 import Swinject
 import SwiftUI
 import FoodAPI
+import MVVMLib
 
 public class Assembly: Swinject.Assembly {
     
@@ -26,7 +27,7 @@ public class Assembly: Swinject.Assembly {
         
         container.register(FoodDataSearchScreen.self) { resolver in
             FoodDataSearchScreen(
-                vmConnector: FoodDataSearchViewModelConnector(
+                vmConnector: ViewModelConnector(
                     viewModel: resolver.resolve(FoodDataSearchViewModel.self)!
                 )
             )

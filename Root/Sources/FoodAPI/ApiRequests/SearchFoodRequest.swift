@@ -2,6 +2,7 @@ import Foundation
 import NetworkLib
 import StandartLib
 import Settings
+import Combine
 
 public protocol SearchFoodRequest {
     init(
@@ -12,7 +13,7 @@ public protocol SearchFoodRequest {
     func run(
         query: String,
         pageNumber: Int
-    ) async throws -> SearchFoodResponse
+    ) -> AnyPublisher<SearchFoodResponse, Error>
 }
 
 class SearchFoodRequestDefault: SearchFoodRequest {
@@ -30,21 +31,33 @@ class SearchFoodRequestDefault: SearchFoodRequest {
     func run(
         query: String,
         pageNumber: Int
-    ) async throws -> SearchFoodResponse {
-        let path = try URL(string: settings(.rootUrl))
-            .value(or: NetworkError.invalidUrl)
-            .appendingPathComponent("/foods/search")
-        
-        var components = try URLComponents(url: path).value(or: NetworkError.invalidUrl)
-        components.queryItems = [
-            "query": query,
-            "pageSize": 50,
-            "pageNumber": pageNumber,
-            "api_key": try settings(.apiKey),
-        ].compactMap(URLQueryItem.init(key:value:))
-        
-        let (data, _) = try await session.data(from: components.url.value(or: NetworkError.invalidUrl))
-        return try JSONDecoder().decode(SearchFoodResponse.self, from: data)
+    ) -> AnyPublisher<SearchFoodResponse, Error> {
+        let session = session
+        let settings = settings
+        return Deferred {
+            Just(())
+                .setFailureType(to: Error.self)
+                .tryMap { _ in
+                    let path = try URL(string: settings(.rootUrl))
+                        .value(or: NetworkError.invalidUrl)
+                        .appendingPathComponent("/foods/search")
+                    
+                    var components = try URLComponents(url: path).value(or: NetworkError.invalidUrl)
+                    components.queryItems = [
+                        "query": query,
+                        "pageSize": 50,
+                        "pageNumber": pageNumber,
+                        "api_key": try settings(.apiKey),
+                    ].compactMap(URLQueryItem.init(key:value:))
+                    return try URLRequest(components: components)
+                }
+                .flatMap { (request: URLRequest) in
+                    session.dataTaskPublisher(for: request).mapError { $0 as Error }
+                }
+                .map { $0.data }
+                .decode(type: SearchFoodResponse.self, decoder: JSONDecoder())
+        }
+        .eraseToAnyPublisher()
     }
     
 }

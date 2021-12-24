@@ -1,17 +1,18 @@
 import SwiftUI
 import StandartLib
 
-struct FoodDataSearchScreen<ViewModel: FoodDataSearchViewModel>: View {
-    @ObservedObject var viewModel: ViewModel
+struct FoodDataSearchScreen<VM: FoodDataSearchViewModel>: View {
+    @ObservedObject var viewModel: VM
     
     var body: some View {
         NavigationView {
-            List(viewModel.rows.indexed(), id: \.index.self) { index, row in
+            List(viewModel.state.rows.indexed(), id: \.index.self) { index, row in
                 RowView(data: row).onAppear {
                     print(index)
                 }
-            }.listStyle(.insetGrouped)
-            .searchable(text: $viewModel.query)
+            }
+            .listStyle(.insetGrouped)
+            .searchable(text: viewModel.bind(\.query, { .search($0) }))
             .navigationTitle("Searchable Example")
         }
     }
@@ -47,25 +48,29 @@ struct FoodDataSearchScreenView_Previews: PreviewProvider {
     }
 }
 
-private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
-    @Published var rows = [
-        RowConfiguration(
-            id: 0,
-            name: "apple",
-            brand: "Apple inc",
-            ingredients: "ingredients",
-            category: "category",
-            calories: "138"
-        ),
-        RowConfiguration(
-            id: 0,
-            name: "apple",
-            brand: "Apple inc",
-            ingredients: "ingredients",
-            category: "category",
-            calories: "138"
-        ),
-    ]
-    @Published var query = "apple"
-
+private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel, ViewModelDispatchStubMixin {
+    let state: FoodDataSearchViewModelDefault.State = {
+        let state = FoodDataSearchViewModelDefault.State(
+            rows: [
+                RowConfiguration(
+                    id: 0,
+                    name: "apple",
+                    brand: "Apple inc",
+                    ingredients: "ingredients",
+                    category: "category",
+                    calories: "138"
+                ),
+                RowConfiguration(
+                    id: 0,
+                    name: "apple",
+                    brand: "Apple inc",
+                    ingredients: "ingredients",
+                    category: "category",
+                    calories: "138"
+                ),
+            ],
+            query: "apple"
+        )
+        return state
+    }()
 }

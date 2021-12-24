@@ -12,11 +12,6 @@
 		DC8C5E29273E80100030044C /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8C5E28273E80100030044C /* Main.swift */; };
 		DC8C5E2D273E80120030044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2C273E80120030044C /* Assets.xcassets */; };
 		DC8C5E30273E80120030044C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC8C5E2F273E80120030044C /* Preview Assets.xcassets */; };
-		DCB9E27E2741608B00B3F321 /* FoodMonitoringDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E2792741608B00B3F321 /* FoodMonitoringDebug.xcconfig */; };
-		DCB9E27F2741608B00B3F321 /* ReleaseProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27A2741608B00B3F321 /* ReleaseProject.xcconfig */; };
-		DCB9E2802741608B00B3F321 /* FoodMonitoringRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27B2741608B00B3F321 /* FoodMonitoringRelease.xcconfig */; };
-		DCB9E2812741608B00B3F321 /* CommonProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27C2741608B00B3F321 /* CommonProject.xcconfig */; };
-		DCB9E2822741608B00B3F321 /* DebugProject.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -150,7 +145,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					DC8C5E24273E80100030044C = {
 						CreatedOnToolsVersion = 13.1;
@@ -183,11 +178,6 @@
 			files = (
 				DC8C5E30273E80120030044C /* Preview Assets.xcassets in Resources */,
 				DC8C5E2D273E80120030044C /* Assets.xcassets in Resources */,
-				DCB9E27F2741608B00B3F321 /* ReleaseProject.xcconfig in Resources */,
-				DCB9E2802741608B00B3F321 /* FoodMonitoringRelease.xcconfig in Resources */,
-				DCB9E27E2741608B00B3F321 /* FoodMonitoringDebug.xcconfig in Resources */,
-				DCB9E2822741608B00B3F321 /* DebugProject.xcconfig in Resources */,
-				DCB9E2812741608B00B3F321 /* CommonProject.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +239,7 @@
 			baseConfigurationReference = DCB9E27D2741608B00B3F321 /* DebugProject.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -311,6 +302,7 @@
 			baseConfigurationReference = DCB9E27A2741608B00B3F321 /* ReleaseProject.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";

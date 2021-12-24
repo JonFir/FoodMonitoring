@@ -7,3 +7,7 @@ vertical_whitespace:
   max_empty_lines: 2
 identifier_name:
   excluded: ["id", "di"]
+type_name:
+  excluded:
+    - VM
+    - V

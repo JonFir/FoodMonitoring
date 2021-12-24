@@ -19,4 +19,7 @@
    <FileRef
       location = "group:StandartLib">
    </FileRef>
+   <FileRef
+      location = "group:MVVMLib">
+   </FileRef>
 </Workspace>

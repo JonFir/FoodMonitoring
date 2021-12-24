@@ -27,6 +27,7 @@ let package = Package(
         .package(name: "SwiftUILib", path: "../SwiftUILib"),
         .package(name: "NetworkLib", path: "../NetworkLib"),
         .package(name: "StandartLib", path: "../StandartLib"),
+        .package(name: "MVVMLib", path: "../MVVMLib"),
         .package(url: "https://github.com/Swinject/Swinject.git", from: "2.8.0")
     ],
     targets: [
@@ -50,6 +51,7 @@ let package = Package(
                 "SwiftUILib",
                 "Localization",
                 "FoodAPI",
+                "MVVMLib",
                 "Swinject",
             ]
         ),

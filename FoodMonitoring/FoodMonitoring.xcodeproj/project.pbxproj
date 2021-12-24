@@ -124,6 +124,7 @@
 				DCDB181B274A1B6B004AF2B0 /* Embed Frameworks */,
 				DCDB1823274A5AF7004AF2B0 /* Settings */,
 				DCDB1824274B4FA3004AF2B0 /* Swiftlint */,
+				DC97ABBE2775E83D00ACCDC5 /* SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -184,6 +185,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		DC97ABBE2775E83D00ACCDC5 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftgen >/dev/null; then\n  cd ../Root; swiftgen\nelse\n  echo \"warning: Swiftgen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
 		DCDB1823274A5AF7004AF2B0 /* Settings */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

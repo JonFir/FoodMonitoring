@@ -8,6 +8,6 @@ public extension CopyMixin {
     func copy(transformer: Transformer) rethrows -> Self {
         var copy = self
         try transformer(&copy)
-        return self
+        return copy
     }
 }

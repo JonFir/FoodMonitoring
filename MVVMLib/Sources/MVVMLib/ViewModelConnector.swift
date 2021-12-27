@@ -28,6 +28,6 @@ public final class ViewModelConnector<VM: ViewModel>: ObservableObject {
     }
     
     public func dispatch(_ event: VM.Event) {
-        viewModel.dispatch(event)
+        viewModel.eventPublisher.send(event)
     }
 }

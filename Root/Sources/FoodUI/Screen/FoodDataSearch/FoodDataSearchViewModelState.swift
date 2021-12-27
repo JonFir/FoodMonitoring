@@ -7,6 +7,7 @@ struct FoodDataSearchViewModelState: CopyMixin {
     var query = ""
     var currentPage = 0
     var maxPage = 1
+    var isPageLoadingInProgress = false
     
     struct Row: Identifiable, Hashable {
         let id: Int

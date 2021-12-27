@@ -3,22 +3,10 @@ import FoodAPI
 import StandartLib
 
 struct FoodDataSearchViewModelState: CopyMixin {
-    var rows: [Row]
-    var query: String
-    var currentPage: Int
-    var maxPage: Int
-    
-    init(
-        rows: [Row] = [Row](),
-        query: String = "",
-        currentPage: Int = 0,
-        maxPage: Int = Int.max
-    ) {
-        self.rows = rows
-        self.query = query
-        self.currentPage = currentPage
-        self.maxPage = maxPage
-    }
+    var rows = [Row]()
+    var query = ""
+    var currentPage = 0
+    var maxPage = 1
     
     struct Row: Identifiable, Hashable {
         let id: Int

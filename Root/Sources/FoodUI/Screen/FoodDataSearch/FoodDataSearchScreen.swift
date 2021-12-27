@@ -10,7 +10,7 @@ struct FoodDataSearchScreen: View {
         NavigationView {
             List(vmConnector.state.rows.indexed(), id: \.index.self) { index, row in
                 RowView(data: row).onAppear {
-                    print(index)
+                    vmConnector.dispatch(.itemShowed(index))
                 }
             }
             .listStyle(.insetGrouped)

@@ -7,7 +7,8 @@ typealias FoodDataSearchViewModel = ViewModelAbstract<FoodDataSearchViewModelSta
 
 final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     private let searchFoodRequest: SearchFoodRequest
-    private var cancellable = Set<AnyCancellable>()
+    private var nextPageRequest: AnyCancellable?
+//    private let nextPageStarter = PassthroughSubject<(SearchFoodRequest, String, Int), Error>()
     
     init(
         searchFoodRequest: SearchFoodRequest,
@@ -15,15 +16,33 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
     ) {
         self.searchFoodRequest = searchFoodRequest
         super.init(initialState: state)
+//        nextPageStarter
+//            .debounce(for: 0.2, scheduler: RunLoop.main)
+//            .map { params in
+//                return params.0.run(query: params.1, pageNumber: params.2)
+//            }
+//            .switchToLatest()
+//            .sink { completion in
+//                print(completion)
+//            } receiveValue: { [weak self] result in
+//                self?.dispatch(.newResultReceived(result: result))
+//            }
+//            .store(in: &cancellable)
     }
     
     override
-    func makeState(fromEvent event: Event) -> State {
+    func on(event: Event) -> State? {
         switch event {
         case .search(let query):
             return onSearch(query: query)
-        case .newResultReceived(let food):
-            return onNewResultReceived(food: food)
+        case .newResultReceived(let result):
+            return onNewResultReceived(result: result)
+        case .requestNextPage:
+            onRequestNextPage()
+            return nil
+        case .itemShowed(let index):
+            onItemShowed(index: index)
+            return nil
         }
     }
     
@@ -31,21 +50,38 @@ final class FoodDataSearchViewModelDefault: FoodDataSearchViewModel {
 
 private extension FoodDataSearchViewModelDefault {
     
-    private func onSearch(query: String) -> State {
-        searchFoodRequest.run(query: query, pageNumber: 0)
-            .subscribe(on: DispatchQueue.global())
-            .receive(on: DispatchQueue.main)
+    func onRequestNextPage() {
+        guard nextPageRequest == nil else { return }
+        nextPageRequest = searchFoodRequest.run(query: state.query, pageNumber: state.currentPage + 1)
             .sink { completion in
                 print(completion)
             } receiveValue: { [weak self] result in
-                let rows = result.foods.map(FoodDataSearchViewModelState.Row.init(food:))
-                self?.dispatch(.newResultReceived(rows))
-            }.store(in: &cancellable)
-        return state.copy { $0.query = query }
+                self?.nextPageRequest = nil
+                self?.dispatch(.newResultReceived(result))
+            }
     }
     
-    private func onNewResultReceived(food: [State.Row]) -> State {
-        state.copy { $0.rows = food }
+    func onSearch(query: String) -> State {
+        nextPageRequest?.cancel()
+        nextPageRequest = nil
+        dispatch(.requestNextPage)
+        return state.copy {
+            $0.rows = []
+            $0.query = query
+        }
+    }
+    
+    func onNewResultReceived(result: SearchFoodResponse) -> State {
+        state.copy {
+            $0.rows += result.foods.map(FoodDataSearchViewModelState.Row.init(food:))
+            $0.currentPage = result.currentPage
+            $0.maxPage = result.totalPages
+        }
+    }
+    
+    func onItemShowed(index: Int) {
+        guard state.rows.count - 5 < index else { return }
+        dispatch(.requestNextPage)
     }
     
 }

@@ -46,7 +46,8 @@ private struct RowView: View {
 
 struct FoodDataSearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDataSearchScreen().environmentObject(ViewModelConnector(viewModel: FoodDataSearchViewModelPreview()))
+        FoodDataSearchScreen()
+            .environmentObject(ViewModelConnector<FoodDataSearchViewModel>(viewModel: FoodDataSearchViewModelPreview()))
     }
 }
 

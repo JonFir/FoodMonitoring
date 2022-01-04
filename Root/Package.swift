@@ -28,7 +28,7 @@ let package = Package(
         .package(name: "NetworkLib", path: "../NetworkLib"),
         .package(name: "StandartLib", path: "../StandartLib"),
         .package(name: "MVVMLib", path: "../MVVMLib"),
-        .package(url: "https://github.com/Swinject/Swinject.git", from: "2.8.0")
+        .package(name: "DILib", path: "../DILib"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -39,7 +39,7 @@ let package = Package(
                 "Settings",
                 "FoodUI",
                 "FoodAPI",
-                "Swinject",
+                "DILib",
             ],
             resources: []
         ),
@@ -52,14 +52,14 @@ let package = Package(
                 "Localization",
                 "FoodAPI",
                 "MVVMLib",
-                "Swinject",
+                "DILib",
             ]
         ),
         .target(
             name: "FoodAPI",
             dependencies: [
                 "NetworkLib",
-                "Swinject",
+                "DILib",
             ],
             resources: []
         ),
@@ -67,7 +67,7 @@ let package = Package(
             name: "Settings",
             dependencies: [
                 "StandartLib",
-                "Swinject",
+                "DILib",
             ],
             resources: []
         ),

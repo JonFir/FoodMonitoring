@@ -25,4 +25,7 @@
    <FileRef
       location = "group:MVVMLib">
    </FileRef>
+   <FileRef
+      location = "group:DILib">
+   </FileRef>
 </Workspace>

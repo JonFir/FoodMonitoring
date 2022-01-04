@@ -2,37 +2,35 @@ import Swinject
 import SwiftUI
 import FoodAPI
 import MVVMLib
+import DILib
+import SwiftUILib
 
 public class Assembly: Swinject.Assembly {
     
     public init() {}
     
     public func assemble(container: Container) {
-        container.register(MainScreen.self) { resolver in
-            MainScreen { AnyView(resolver.resolve(SearchFoodScreen.self)!) }
+        container.registerView(MainScreen.self) { resolver in
+            MainScreen { resolver.resolveView(SearchFoodScreen.self)! }.eraseToAnyView()
         }
-        
-        container.register(SearchFoodScreen.self) { resolver in
+
+        container.registerView(SearchFoodScreen.self) { resolver in
             SearchFoodScreen {
-                AnyView(resolver.resolve(FoodDataSearchScreen.self)!)
-            }
+                resolver.resolveView(FoodDataSearchScreen.self)!
+            }.eraseToAnyView()
         }
-        
+
         container.register(FoodDataSearchViewModel.self) { resolver in
             FoodDataSearchViewModelDefault(
                 searchFoodRequest: resolver.resolve(SearchFoodRequest.self)!,
                 initialState: FoodDataSearchViewModelState()
             )
         }
-        
-        container.register(FoodDataSearchScreen.self) { resolver in
-            FoodDataSearchScreen(
-                vmConnector: ViewModelConnector(
-                    viewModel: resolver.resolve(FoodDataSearchViewModel.self)!
-                )
-            )
+
+        container.registerView(FoodDataSearchScreen.self) { resolver in
+            let connector = ViewModelConnector(viewModel: resolver.resolve(FoodDataSearchViewModel.self)!)
+            return FoodDataSearchScreen().environmentObject(connector).eraseToAnyView()
         }
-        
         
     }
     

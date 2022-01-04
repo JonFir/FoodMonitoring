@@ -3,6 +3,7 @@ import Foundation
 import Settings
 import FoodAPI
 import FoodUI
+import DILib
 
 let assembler = Assembler([
     Root.Assembly(),

@@ -4,7 +4,7 @@ import MVVMLib
 import Localization
 
 struct FoodDataSearchScreen: View {
-    @ObservedObject var vmConnector: ViewModelConnector<FoodDataSearchViewModel>
+    @EnvironmentObject var vmConnector: ViewModelConnector<FoodDataSearchViewModel>
     
     var body: some View {
         NavigationView {
@@ -46,7 +46,7 @@ private struct RowView: View {
 
 struct FoodDataSearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDataSearchScreen(vmConnector: ViewModelConnector(viewModel: FoodDataSearchViewModelPreview()))
+        FoodDataSearchScreen().environmentObject(ViewModelConnector(viewModel: FoodDataSearchViewModelPreview()))
     }
 }
 

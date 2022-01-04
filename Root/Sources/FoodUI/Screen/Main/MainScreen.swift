@@ -3,6 +3,10 @@ import Modifiers
 import SwiftUIPreviewLib
 import Localization
 
+public protocol MainScreenFactory {
+    func makeSearchFoodScreen() -> AnyView
+}
+
 public struct MainScreen: View {
     typealias MakeSearchFoodScreen = () -> AnyView
     

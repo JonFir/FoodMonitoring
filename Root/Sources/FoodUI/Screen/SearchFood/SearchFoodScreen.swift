@@ -1,22 +1,16 @@
 import SwiftUI
 import Modifiers
 import Localization
+import DILib
 
 struct SearchFoodScreen: View {
-    typealias MakeFoodDataSearchScreen = () -> AnyView
-    private let makeFoodDataSearchScreen: MakeFoodDataSearchScreen
+    @Environment(\.viewFactory) var viewFactory
     
     @State
     private var isShowCreateFoodChoiceSheet = false
     
     @State
     private var ssss = false
-    
-    init(
-        makeFoodDataSearchScreen: @escaping MakeFoodDataSearchScreen
-    ) {
-        self.makeFoodDataSearchScreen = makeFoodDataSearchScreen
-    }
     
     var body: some View {
         ZStack {
@@ -43,7 +37,7 @@ struct SearchFoodScreen: View {
             }
         }
         .sheet(isPresented: $ssss) {
-            makeFoodDataSearchScreen()
+            viewFactory.view(forKey: .foodDataSearch)
         }
         
     }
@@ -51,6 +45,6 @@ struct SearchFoodScreen: View {
 
 struct SearchFoodScreen_Previews: PreviewProvider {
     static var previews: some View {
-        SearchFoodScreen { AnyView(Text("")) }
+        SearchFoodScreen()
     }
 }

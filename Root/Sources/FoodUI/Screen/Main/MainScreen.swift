@@ -2,24 +2,13 @@ import SwiftUI
 import Modifiers
 import SwiftUIPreviewLib
 import Localization
-
-public protocol MainScreenFactory {
-    func makeSearchFoodScreen() -> AnyView
-}
+import DILib
 
 public struct MainScreen: View {
-    typealias MakeSearchFoodScreen = () -> AnyView
-    
-    private let makeSearchFoodScreen: MakeSearchFoodScreen
+    @Environment(\.viewFactory) var viewFactory
     
     @State
     private var isShowNewFood = false
-    
-    init(
-         makeSearchFoodScreen: @escaping MakeSearchFoodScreen
-    ) {
-        self.makeSearchFoodScreen = makeSearchFoodScreen
-    }
     
     public var body: some View {
         ZStack {
@@ -30,13 +19,15 @@ public struct MainScreen: View {
                 .modifier(Modifiers.Alignment(.bottomTrailing))
                 .padding([.bottom, .trailing], 16)
         }
-        .sheet(isPresented: $isShowNewFood, content: makeSearchFoodScreen)
+        .sheet(isPresented: $isShowNewFood) {
+            viewFactory.view(forKey: .searchFood)
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainScreen { AnyView(Text("Next1")) }
+        MainScreen()
             .preferredColorScheme(.light)
             .modifier(PreviewLocaleModifier("ru"))
     }

@@ -5,7 +5,9 @@ import FoodAPI
 import FoodUI
 import DILib
 
-let assembler = Assembler([
+let viewFactory = assembler.resolver.makeViewFactory()
+
+private let assembler = Assembler([
     Root.Assembly(),
     Settings.Assembly(),
     FoodAPI.Assembly(),

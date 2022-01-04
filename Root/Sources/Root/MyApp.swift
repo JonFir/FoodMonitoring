@@ -7,7 +7,7 @@ public struct MyApp: App {
     
     public var body: some Scene {
         WindowGroup {
-            assembler.resolver.resolveView(.main)
+            viewFactory.view(forKey: .main)
         }
     }
 }

@@ -4,13 +4,13 @@ import SwiftUIPreviewLib
 import Localization
 import DILib
 
-public struct MainScreen: View {
+struct MainScreen: View {
     @Environment(\.viewFactory) var viewFactory
     
     @State
     private var isShowNewFood = false
     
-    public var body: some View {
+    var body: some View {
         ZStack {
             VStack {
                 Text(L10n.hello)

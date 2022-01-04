@@ -7,11 +7,21 @@ public extension Container {
             factory(resolver)
         }
     }
+    
+    func registerView<A>(_ key: ViewKey, factory: @escaping (Resolver, A) -> AnyView) {
+        register(AnyView.self, name: key.name) { resolver, argument in
+            factory(resolver, argument)
+        }
+    }
 }
 
 public extension Resolver {
     func resolveView(_ key: ViewKey) -> AnyView? {
         return resolve(AnyView.self, name: key.name)
+    }
+    
+    func resolveView<A>(_ key: ViewKey, _ argument: A) -> AnyView? {
+        return resolve(AnyView.self, name: key.name, argument: argument)
     }
     
     func makeViewFactory() -> ViewFactory {
@@ -32,6 +42,10 @@ private class ResolverViewFactoryDecorator: ViewFactory {
     
     func view(forKey key: ViewKey) -> AnyView? {
         resolver.resolveView(key)
+    }
+    
+    func view<A>(forKey key: ViewKey, withArgument argument: A) -> AnyView? {
+        resolver.resolveView(key, argument)
     }
 }
 

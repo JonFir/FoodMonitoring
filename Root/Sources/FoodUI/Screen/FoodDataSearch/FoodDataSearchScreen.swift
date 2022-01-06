@@ -42,20 +42,28 @@ private struct RowView: View {
     
     var body: some View {
         Section(header: Text(data.name)) {
-            HStack {
-                Text("Калл:").font(.caption)
-                Spacer()
-                Text(data.calories)
-            }
-            HStack {
-                Text("Категория:").font(.caption)
-                Spacer()
-                Text(data.category)
-            }
-            HStack {
-                Text("Бренд:").font(.caption)
-                Spacer()
-                Text(data.brand)
+            NavigationLink {
+                Text("sd")
+            } label: {
+                VStack {
+                    HStack {
+                        Text("Калл:").font(.caption)
+                        Spacer()
+                        Text(data.calories)
+                    }
+                    HStack {
+                        Text("Категория:").font(.caption)
+                        Spacer()
+                        Text(data.category)
+                    }
+                    if !data.brand.isEmpty {
+                        HStack {
+                            Text("Бренд:").font(.caption)
+                            Spacer()
+                            Text(data.brand)
+                        }
+                    }
+                }.lineLimit(1)
             }
         }
     }

@@ -8,6 +8,16 @@ struct FoodDataSearchViewModelState: CopyMixin {
     var currentPage = 0
     var maxPage = 1
     var isPageLoadingInProgress = false
+    var error = ""
+    var variant: Variant {
+        switch (rows.isEmpty, query.isEmpty, isPageLoadingInProgress, error.isEmpty) {
+        case (false, _, _, _): return .rows
+        case (true, _, true, _): return .loading
+        case (true, true, false, true): return .enterQuery
+        case (true, false, false, true): return .empty
+        case (true, _, false, false): return .error
+        }
+    }
     
     struct Row: Identifiable, Hashable {
         let id: Int
@@ -16,6 +26,14 @@ struct FoodDataSearchViewModelState: CopyMixin {
         let ingredients: String
         let category: String
         let calories: String
+    }
+    
+    enum Variant {
+        case enterQuery
+        case loading
+        case empty
+        case rows
+        case error
     }
 }
 

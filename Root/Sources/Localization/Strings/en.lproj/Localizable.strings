@@ -1,4 +1,6 @@
 "hello" = "hello world";
 "create_food_choice_sheet_simple_dish" = "Simple dish";
 "create_food_choice_sheet_complex_dish" = "Complex dish";
-"food_data_search_screen_title" = "Поиск продуктов";
+"food_data_search_screen_title" = "Food search";
+"food_data_search_screen_empty_result_label" = "Nothing found";
+"food_data_search_screen_start_search_hint" = "Enter query";

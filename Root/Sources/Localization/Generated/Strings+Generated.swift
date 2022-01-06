@@ -14,6 +14,10 @@ public enum L10n {
   public static var createFoodChoiceSheetComplexDish: String { return L10n.tr("Localizable", "create_food_choice_sheet_complex_dish") }
   /// Простое блюдо
   public static var createFoodChoiceSheetSimpleDish: String { return L10n.tr("Localizable", "create_food_choice_sheet_simple_dish") }
+  /// Ничего не найдено
+  public static var foodDataSearchScreenEmptyResultLabel: String { return L10n.tr("Localizable", "food_data_search_screen_empty_result_label") }
+  /// Введите запрос
+  public static var foodDataSearchScreenStartSearchHint: String { return L10n.tr("Localizable", "food_data_search_screen_start_search_hint") }
   /// Поиск продуктов
   public static var foodDataSearchScreenTitle: String { return L10n.tr("Localizable", "food_data_search_screen_title") }
   /// Привет мир

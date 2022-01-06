@@ -2,21 +2,38 @@ import SwiftUI
 import StandartLib
 import MVVMLib
 import Localization
+import SwiftUIPreviewLib
 
 struct FoodDataSearchScreen: View {
     @EnvironmentObject var vmConnector: ViewModelConnector<FoodDataSearchViewModel>
     
     var body: some View {
         NavigationView {
-            List(vmConnector.state.rows.indexed(), id: \.index.self) { index, row in
-                RowView(data: row).onAppear {
-                    vmConnector.dispatch(.itemShowed(index))
+            Group {
+                switch vmConnector.state.variant {
+                case .rows: ListView()
+                case .empty: Text(L10n.foodDataSearchScreenEmptyResultLabel)
+                case .enterQuery: Text(L10n.foodDataSearchScreenStartSearchHint)
+                case .loading: ProgressView()
+                case .error: Text(vmConnector.state.error)
                 }
             }
-            .listStyle(.insetGrouped)
             .searchable(text: vmConnector.bind(\.query, { .search($0) }))
             .navigationTitle(L10n.foodDataSearchScreenTitle)
         }
+    }
+}
+
+private struct ListView: View {
+    @EnvironmentObject var vmConnector: ViewModelConnector<FoodDataSearchViewModel>
+    
+    var body: some View {
+        List(vmConnector.state.rows.indexed(), id: \.index.self) { index, row in
+            RowView(data: row).onAppear {
+                vmConnector.dispatch(.itemShowed(index))
+            }
+        }
+        .listStyle(.insetGrouped)
     }
 }
 
@@ -48,6 +65,7 @@ struct FoodDataSearchScreenView_Previews: PreviewProvider {
     static var previews: some View {
         FoodDataSearchScreen()
             .environmentObject(ViewModelConnector<FoodDataSearchViewModel>(viewModel: FoodDataSearchViewModelPreview()))
+            .modifier(PreviewLocaleModifier("en"))
     }
 }
 
@@ -73,7 +91,9 @@ private final class FoodDataSearchViewModelPreview: FoodDataSearchViewModel {
                     calories: "138"
                 ),
             ],
-            query: "apple"
+            query: "apple",
+            isPageLoadingInProgress: false,
+            error: ""
         )
         super.init(initialState: state)
     }
